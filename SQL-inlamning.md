@@ -1,7 +1,7 @@
 # SQL-inlämning — Diskografi
 
-**Namn:** [Ditt namn]  
-**Artist:** [Din valda artist]  
+**Namn:** Aysha Nihal  
+**Artist:** A R Rahman  
 **Datum:** [Datum]
 
 ---
