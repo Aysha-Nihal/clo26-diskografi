@@ -109,19 +109,21 @@ VALUES
 ## 3. Söka — SELECT
 
 ```sql
-List all albums, sorted by year
+--List all albums, sorted by year
 query 1: 
 SELECT *
 FROM albums
 ORDER BY release_year ASC;
 
 
+--List all songs on a specific album
 query 2: 
 SELECT title
 FROM songs
 WHERE album_id = 1; 
 
 
+--Number of songs per album
 query 3: 
 SELECT
     albums.title,
@@ -132,6 +134,7 @@ JOIN songs
 GROUP BY albums.id; 
 
 
+--Longest song
 query 4: 
 SELECT title, duration_seconds
 FROM songs
@@ -139,6 +142,7 @@ ORDER BY duration_seconds DESC
 LIMIT 1;
 
 
+--All songs sorted alphabetically
 query 5: 
 SELECT title
 FROM songs
@@ -151,7 +155,7 @@ ORDER BY title ASC;
 ## 4. Lägg till en ny rad — INSERT
 
 ```sql
-
+---Add a new album and a new song
 INSERT INTO albums (id, title, release_year, artist_id)
 VALUES (4, 'Alaipayuthey', 2000, 1);
 
@@ -166,7 +170,7 @@ VALUES (10, 'Pachai Nirame', 357, 4);
 ## 5. Ta bort en rad — DELETE
 
 ```sql
-
+---Remove a row from song table
 DELETE FROM songs
 WHERE id = 11;
 
@@ -177,7 +181,7 @@ WHERE id = 11;
 ## 6. Uppdatera en rad — UPDATE
 
 ```sql
-
+---Update one row in albums table
 UPDATE albums
 SET release_year = 2001
 WHERE id = 4;
@@ -189,6 +193,7 @@ WHERE id = 4;
 ## 7. VG-queries (om du siktar på VG)
 
 ```sql
+---Average song length per album
 query 6: 
 SELECT
     albums.title AS album_title,
@@ -199,6 +204,7 @@ JOIN songs
 GROUP BY albums.id, albums.title;
 
 
+---The album with the most songs
 query 7: 
 SELECT
     albums.title AS album_title,
@@ -211,6 +217,7 @@ ORDER BY number_of_songs DESC
 LIMIT 1;
 
 
+---All songs longer than 4 minutes (240 seconds), with album title
 query 8: 
 SELECT
     songs.title AS song_title,
