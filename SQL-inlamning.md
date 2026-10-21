@@ -14,7 +14,6 @@
 ## 1. Skapa databasen — CREATE TABLE
 
 ```sql
---- 
 CREATE TABLE IF NOT EXISTS artists (
     id INTEGER PRIMARY KEY,
     name TEXT NOT NULL
@@ -48,7 +47,6 @@ CREATE TABLE IF NOT EXISTS song_genres (
     FOREIGN KEY (song_id) REFERENCES songs(id),
     FOREIGN KEY (genre_id) REFERENCES genres(id)
 );
- ---
 
 ```
 
@@ -57,7 +55,6 @@ CREATE TABLE IF NOT EXISTS song_genres (
 ## 2. Seeda med data — INSERT
 
 ```sql
---- 
 -- Add to Artist table
 INSERT INTO artists (id, name)
 VALUES (1, 'A. R. Rahman');
@@ -103,7 +100,7 @@ VALUES
     (8, 1),
     (8, 3),
     (9, 1);
- ---
+ 
 
 ```
 
@@ -112,96 +109,96 @@ VALUES
 ## 3. Söka — SELECT
 
 ```sql
---- query 1: 
+query 1: 
 SELECT *
 FROM albums
-ORDER BY release_year ASC; ---
+ORDER BY release_year ASC;
 
 
---- query 2: 
+query 2: 
 SELECT title
 FROM songs
-WHERE album_id = 1; ---
+WHERE album_id = 1; 
 
 
---- query 3: 
+query 3: 
 SELECT
     albums.title,
     COUNT(songs.id) AS number_of_songs
 FROM albums
 JOIN songs
     ON albums.id = songs.album_id
-GROUP BY albums.id; ---
+GROUP BY albums.id; 
 
 
---- query 4: 
+query 4: 
 SELECT title, duration_seconds
 FROM songs
 ORDER BY duration_seconds DESC
-LIMIT 1; ---
+LIMIT 1;
 
 
---- query 5: 
+query 5: 
 SELECT title
 FROM songs
-ORDER BY title ASC; ---
+ORDER BY title ASC; 
 
 ```
 
----
+
 
 ## 4. Lägg till en ny rad — INSERT
 
 ```sql
---- 
+
 INSERT INTO albums (id, title, release_year, artist_id)
 VALUES (4, 'Alaipayuthey', 2000, 1);
 
 INSERT INTO songs (id, title, duration_seconds, album_id)
 VALUES (10, 'Pachai Nirame', 357, 4);
- ---
+
 
 ```
 
----
+
 
 ## 5. Ta bort en rad — DELETE
 
 ```sql
---- 
+
 DELETE FROM songs
-WHERE id = 11; ---
+WHERE id = 11;
 
 ```
 
----
+
 
 ## 6. Uppdatera en rad — UPDATE
 
 ```sql
---- 
+
 UPDATE albums
 SET release_year = 2001
-WHERE id = 4; ---
+WHERE id = 4;
 
 ```
 
----
+
 
 ## 7. VG-queries (om du siktar på VG)
 
 ```sql
---- query 6: 
+query 6: 
 SELECT
     albums.title AS album_title,
     AVG(songs.duration_seconds) AS average_duration_seconds
 FROM albums
 JOIN songs
     ON albums.id = songs.album_id
-GROUP BY albums.id, albums.title; ---
+GROUP BY albums.id, albums.title;
 
 
---- query 7: 
+query 7: 
 SELECT
     albums.title AS album_title,
     COUNT(songs.id) AS number_of_songs
@@ -210,10 +207,10 @@ JOIN songs
     ON albums.id = songs.album_id
 GROUP BY albums.id, albums.title
 ORDER BY number_of_songs DESC
-LIMIT 1; ---
+LIMIT 1;
 
 
---- query 8: 
+query 8: 
 SELECT
     songs.title AS song_title,
     songs.duration_seconds,
@@ -223,6 +220,5 @@ JOIN albums
     ON songs.album_id = albums.id
 WHERE songs.duration_seconds > 240
 ORDER BY songs.duration_seconds DESC;
----
 
 ```
