@@ -109,6 +109,7 @@ VALUES
 ## 3. Söka — SELECT
 
 ```sql
+---List all albums, sorted by year
 query 1: 
 SELECT *
 FROM albums
