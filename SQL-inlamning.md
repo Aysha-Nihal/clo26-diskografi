@@ -109,41 +109,37 @@ VALUES
 ## 3. Söka — SELECT
 
 ```sql
---List all albums, sorted by year
-query 1: 
+-- Query 1:List all albums, sorted by year 
 SELECT *
 FROM albums
 ORDER BY release_year ASC;
 
 
---List all songs on a specific album
-query 2: 
+-- Query 2: List all songs on a specific album 
 SELECT title
 FROM songs
 WHERE album_id = 1; 
 
 
---Number of songs per album
-query 3: 
+-- Query 3:Number of songs per album 
 SELECT
     albums.title,
     COUNT(songs.id) AS number_of_songs
 FROM albums
 JOIN songs
     ON albums.id = songs.album_id
-GROUP BY albums.id; 
+GROUP BY albums.id, albums.title; 
 
 
---Longest song
-query 4: 
+--Query 4: Longest song
 SELECT title, duration_seconds
 FROM songs
 ORDER BY duration_seconds DESC
 LIMIT 1;
 
 
---All songs sorted alphabetically
-query 5: 
+--Query 5: All songs sorted alphabetically
+
 SELECT title
 FROM songs
 ORDER BY title ASC; 
@@ -193,8 +189,7 @@ WHERE id = 4;
 ## 7. VG-queries (om du siktar på VG)
 
 ```sql
----Average song length per album
-query 6: 
+-- Query 6: Average song length per album
 SELECT
     albums.title AS album_title,
     AVG(songs.duration_seconds) AS average_duration_seconds
@@ -204,8 +199,7 @@ JOIN songs
 GROUP BY albums.id, albums.title;
 
 
----The album with the most songs
-query 7: 
+-- Query 7: The album with the most songs
 SELECT
     albums.title AS album_title,
     COUNT(songs.id) AS number_of_songs
@@ -217,8 +211,8 @@ ORDER BY number_of_songs DESC
 LIMIT 1;
 
 
----All songs longer than 4 minutes (240 seconds), with album title
-query 8: 
+-- Query 8: All songs longer than 4 minutes (240 seconds), with album title
+ 
 SELECT
     songs.title AS song_title,
     songs.duration_seconds,
